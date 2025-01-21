@@ -7,7 +7,7 @@ on:
     - cron: "0 */12 * * *"
 
 jobs:
-  run-python-test-code:
+  run-scrape-XBRL-code-by-Python:
     runs-on: ubuntu-latest
     env:
         MY_SUBSCRIPTION_KEY: ${{ secrets.MY_SUBSCRIPTION_KEY }}
