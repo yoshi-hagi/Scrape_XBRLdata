@@ -1,0 +1,43 @@
+name: Run Python-Script
+
+on:
+  push:
+  schedule:
+    # 12時間ごとに (0:00 UTC と 12:00 UTC) 実行
+    - cron: "0 */12 * * *"
+
+jobs:
+  run-python-test-code:
+    runs-on: ubuntu-latest
+    steps:
+      # リポジトリのチェックアウト
+      - uses: actions/checkout@v4
+
+      # Python のセットアップ (3.12系をインストール)
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # requests のインストール
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # Scrape_XBRLdata.py の実行
+      - name: Run Scrape_XBRLdata.py
+        run: python Scrape_XBRLdata.py
+
+      # アーティファクトのアップロード
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: XBRL_data      # アーティファクト名（任意）
+          path: DLData/**
+
+    #   # アーティファクトのダウンロード
+    #   - name: Download artifact
+    #     uses: actions/download-artifact@v4
+    #     with:
+    #       name: SI_datas      # アーティファクト名（任意）
+    #       path: Datafiles/**
+
