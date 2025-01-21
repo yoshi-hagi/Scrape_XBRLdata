@@ -72,7 +72,8 @@ def download_xbrl_in_zip(securities_report_doc_info_list):
         }
         # ダウンロードファイル名に filerName を含める
         # ファイル名に使えない文字が含まれる場合があるので、必要に応じて置換してください
-        filename = os.path.join(save_dir, f"{doc_id}_{filer_name}.zip")
+        # filename = os.path.join(save_dir, f"{doc_id}_{filer_name}.zip") # いったん中止
+        filename = os.path.join(save_dir, f"{doc_id}.zip")
 
         res = requests.get(url, params=params, stream=True)
         try:
