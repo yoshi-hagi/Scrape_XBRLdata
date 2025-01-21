@@ -1,4 +1,4 @@
-name: Run Python-Script
+name: Scraping XBRL data by Python
 
 on:
   push:
@@ -9,6 +9,8 @@ on:
 jobs:
   run-python-test-code:
     runs-on: ubuntu-latest
+    env:
+        MY_SUBSCRIPTION_KEY: ${{ secrets.MY_SUBSCRIPTION_KEY }}
     steps:
       # リポジトリのチェックアウト
       - uses: actions/checkout@v4
